@@ -69,6 +69,8 @@
        <font>
         <family>Nanum Gothic</family>
         <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -101,6 +103,8 @@
        <font>
         <family>Nanum Gothic</family>
         <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -137,6 +141,13 @@
      <width>161</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nanum Gothic</family>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>yyyy/MM/dd HH:mm:ss</string>

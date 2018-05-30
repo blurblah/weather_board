@@ -3,17 +3,15 @@
 
 import sys
 import time
-import pytz
+
 import json
-
-from datetime import datetime
-from influxdb import InfluxDBClient
-
+import pytz
 from PyQt5 import QtWidgets
 from PyQt5 import uic
-from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import pyqtSignal
+from datetime import datetime
+from influxdb import InfluxDBClient
 
 
 class DataStore(object):
@@ -63,7 +61,6 @@ class TicGenerator(QThread):
 class Form(QtWidgets.QWidget):
     def __init__(self, parent=None):
         self.data_store = DataStore()
-        #QtWidgets.QDialog.__init__(self, parent)
         QtWidgets.QWidget.__init__(self, parent)
         self.tic_gen = TicGenerator()
         self.tic_gen.start()
@@ -73,7 +70,6 @@ class Form(QtWidgets.QWidget):
         self.tic_gen.Tic.connect(
             lambda: self.set_values()
         )
-        #self.setWindowFlag(Qt.FramelessWindowHint)
         self.ui.show()
         self.ui.showFullScreen()
 
