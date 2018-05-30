@@ -9,6 +9,7 @@ from influxdb import InfluxDBClient
 
 from PyQt5 import QtWidgets
 from PyQt5 import uic
+from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import pyqtSignal
 
@@ -64,6 +65,7 @@ class Form(QtWidgets.QDialog):
         self.tic_gen.Tic.connect(
             lambda: self.set_values()
         )
+        self.setWindowFlag(Qt.FramelessWindowHint)
         self.ui.show()
 
     def set_values(self):
