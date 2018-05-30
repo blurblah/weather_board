@@ -1,9 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 
 import sys
 import time
 import pytz
+import json
+
 from datetime import datetime
 from influxdb import InfluxDBClient
 
@@ -18,6 +20,11 @@ class DataStore(object):
     def __init__(self):
         self.client = InfluxDBClient(
             # fill influxdb connection info
+            config['influxdb']['host'],
+            config['influxdb']['port'],
+            config['influxdb']['username'],
+            config['influxdb']['password'],
+            config['influxdb']['dbname']
         )
 
     def select_last_temperature(self):
@@ -85,6 +92,13 @@ class Form(QtWidgets.QDialog):
 
 
 if __name__ == '__main__':
+    try:
+        with open('config.json', 'r') as f:
+            config = json.load(f)
+    except FileNotFoundError:
+        print('config.json file not found.')
+        sys.exit(1)
+
     app = QtWidgets.QApplication(sys.argv)
     w = Form()
     sys.exit(app.exec())
