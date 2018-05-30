@@ -60,20 +60,22 @@ class TicGenerator(QThread):
             self.sleep(60)
 
 
-class Form(QtWidgets.QDialog):
+class Form(QtWidgets.QWidget):
     def __init__(self, parent=None):
         self.data_store = DataStore()
-        QtWidgets.QDialog.__init__(self, parent)
+        #QtWidgets.QDialog.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         self.tic_gen = TicGenerator()
         self.tic_gen.start()
 
-        self.ui = uic.loadUi('ui/dialog.ui', self)
+        self.ui = uic.loadUi('widget_ui/widget.ui', self)
         self.set_values()
         self.tic_gen.Tic.connect(
             lambda: self.set_values()
         )
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        #self.setWindowFlag(Qt.FramelessWindowHint)
         self.ui.show()
+        self.ui.showFullScreen()
 
     def set_values(self):
         time_value = self.data_store.select_last_temperature()['time']
